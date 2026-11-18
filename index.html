@@ -45,7 +45,7 @@
     <section class="classifier-section" id="classifier">
       <div class="section-heading">
         <div><div class="eyebrow"><span class="section-number">01</span> THE CLASSIFIER</div><h2>What’s in your basket?</h2></div>
-        <p>Drop in a fruit photo to preview the classification experience. The trained model can be connected when it’s ready.</p>
+        <p>Drop in a fruit photo and MobileNet will identify its closest fruit match right in your browser.</p>
       </div>
       <div class="classifier-card">
         <div class="upload-panel" id="drop-zone">
@@ -59,10 +59,22 @@
           <div class="upload-feedback" id="upload-feedback" role="status" aria-live="polite"></div>
         </div>
         <div class="result-panel">
-          <div class="result-topline"><span>YOUR RESULTS</span><span class="result-badge"><span></span> MODEL NOT CONNECTED</span></div>
-          <div class="result-empty" id="result-empty"><div class="result-symbol" aria-hidden="true">?</div><h3>Your prediction will show up here</h3><p>Once a trained model is connected, this space can display its fruit label and confidence score.</p></div>
-          <div class="result-ready" id="result-ready" hidden><div class="ready-icon" aria-hidden="true">↗</div><h3>Image ready for inference</h3><p>Your image preview is set. Connect a model endpoint to turn it into a prediction.</p><div class="ready-file" id="ready-file"></div></div>
-          <div class="result-footer"><span>FruitLens · image classification</span><span>MODEL STATUS: <b>NOT CONFIGURED</b></span></div>
+          <div class="result-topline"><span>YOUR RESULTS</span><span class="result-badge"><span></span><span id="model-status">MOBILENET · ON DEVICE</span></span></div>
+          <div class="result-empty" id="result-empty"><div class="result-symbol" aria-hidden="true">?</div><h3>Your prediction will show up here</h3><p>Add a clear fruit photo to classify it with MobileNet in your browser.</p></div>
+          <div class="result-ready" id="result-ready" aria-live="polite" hidden>
+            <div class="ready-icon" aria-hidden="true">↗</div>
+            <h3 id="result-title">Preparing your classifier…</h3>
+            <p id="result-message">The first image downloads the model. Your photo stays on this device.</p>
+            <div class="prediction-output" id="prediction-output" hidden>
+              <div class="prediction-label" id="prediction-label"></div>
+              <div class="confidence-row"><span>Confidence</span><strong id="confidence-value"></strong></div>
+              <div class="confidence-track"><span id="confidence-bar"></span></div>
+              <p class="prediction-note" id="prediction-note"></p>
+            </div>
+            <button type="button" class="retry-button" id="retry-button" hidden>Try again</button>
+            <div class="ready-file" id="ready-file"></div>
+          </div>
+          <div class="result-footer"><span>FruitLens · TensorFlow.js MobileNet</span><span>MODEL: <b id="model-footer-status">READY ON DEMAND</b></span></div>
         </div>
       </div>
       <p class="privacy-note"><span aria-hidden="true">↗</span> Your selected image stays in this browser preview; it isn’t uploaded anywhere.</p>
@@ -77,8 +89,8 @@
       </div>
     </section>
     <section class="project-section" id="project">
-      <div class="project-copy"><div class="eyebrow"><span class="section-number">03</span> A NOTE ON THE PROJECT</div><h2>Built to learn.<br>Ready to <span>grow.</span></h2><p>FruitLens is a starting point for an image-classification project. The site includes an image preview experience, but it does not claim to make predictions until a trained model is integrated.</p><a class="text-link" href="#classifier">Try the image preview <span aria-hidden="true">↑</span></a></div>
-      <div class="project-note"><span class="note-star" aria-hidden="true">✳</span><span class="note-kicker">NEXT STEP</span><h3>Connect your model</h3><p>Wire up an inference endpoint and return a fruit label with a confidence score to bring predictions to life.</p><div class="model-chips"><span>Image input</span><span>Class label</span><span>Confidence</span></div></div>
+      <div class="project-copy"><div class="eyebrow"><span class="section-number">03</span> A NOTE ON THE PROJECT</div><h2>Built to learn.<br>Ready to <span>grow.</span></h2><p>FruitLens runs MobileNet with TensorFlow.js. It is a general-purpose ImageNet model—not a custom fruit-only model—so predictions can vary. Inference happens in your browser; the first use downloads the model files.</p><a class="text-link" href="#classifier">Try the classifier <span aria-hidden="true">↑</span></a></div>
+      <div class="project-note"><span class="note-star" aria-hidden="true">✳</span><span class="note-kicker">NEXT STEP</span><h3>Fine-tune for fruit</h3><p>A dedicated fruit dataset and fine-tuned model can improve accuracy across more fruit varieties and real-world photos.</p><div class="model-chips"><span>Fruit dataset</span><span>Fine-tuning</span><span>Better accuracy</span></div></div>
     </section>
   </main>
   <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">f.</span><span>fruit<span class="brand-light">lens</span></span></a><span>A tiny study in seeing the everyday differently.</span><a href="#" class="back-top">BACK TO TOP ↑</a></footer>
